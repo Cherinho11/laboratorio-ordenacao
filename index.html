@@ -66,10 +66,10 @@
                         Versão 1.0
                     </span>
                     <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-cosmic-magenta/20 text-pink-200 border border-cosmic-magenta/40 shadow-[0_0_12px_rgba(236,72,153,0.25)]">
-                        JavaScript Puro
+                        JavaScript Puro (Vanilla)
                     </span>
                     <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-cosmic-cyan/20 text-cyan-200 border border-cosmic-cyan/40 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
-                        Animação Passo a Passo
+                        GitHub Pages Ready
                     </span>
                 </div>
             </div>
@@ -88,53 +88,50 @@
             <div>
                 <label class="block text-xs font-bold uppercase tracking-wider text-purple-300 mb-3">Exemplos Rápidos de Entrada:</label>
                 <div class="flex flex-wrap gap-2.5">
-                    <button type="button" onclick="loadPreset('8, 3, 10, -2, 3, 1')" class="glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                    <button type="button" data-values="8, 3, 10, -2, 3, 1" class="preset-btn glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
                         Padrão (8, 3, 10, -2, 3, 1)
                     </button>
-                    <button type="button" onclick="loadPreset('15, 4, 23, 8, 42, 16, 4')" class="glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
-                        Sequência Média
+                    <button type="button" data-values="5, 2, 8, 1" class="preset-btn glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                        Sequência Simples
                     </button>
-                    <button type="button" onclick="loadPreset('5, 2, 8, 1, 9, 3')" class="glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
-                        Valores Mistos
+                    <button type="button" data-values="4, 2, 4, 1" class="preset-btn glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                        Valores Repetidos
                     </button>
-                    <button type="button" onclick="loadPreset('-5, 12, -8, 0, 7, -3')" class="glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
-                        Com Negativos
-                    </button>
-                    <button type="button" onclick="generateRandomArray()" class="glow-btn bg-pink-900/40 hover:bg-cosmic-magenta text-pink-100 hover:text-white border border-pink-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
-                        🎲 Aleatório (12 itens)
+                    <button type="button" data-values="3, -5, 0, -1" class="preset-btn glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                        Valores Negativos
                     </button>
                 </div>
             </div>
 
             <!-- Formulário -->
-            <form id="sortForm" onsubmit="handleStartSort(event)" class="space-y-6">
+            <form id="sorting-form" id="sortForm" class="space-y-6">
                 <!-- Input de Números -->
                 <div>
-                    <label for="numbersInput" class="block text-sm font-semibold text-purple-200 mb-2">Sequência Numérica (Dados Brutos):</label>
-                    <input type="text" id="numbersInput" placeholder="Ex: 8, 3, 10, -2, 3, 1" value="8, 3, 10, -2, 3, 1"
+                    <label for="numbers-input" class="block text-sm font-semibold text-purple-200 mb-2">Sequência Numérica (Dados Brutos):</label>
+                    <input type="text" id="numbers-input" name="numbersInput" placeholder="Ex: 8, 3, 10, -2, 3, 1" value="8, 3, 10, -2, 3, 1" autocomplete="off"
                            class="w-full bg-cosmic-bg/80 border border-purple-500/30 rounded-xl px-4 py-3 text-white placeholder-purple-400/50 focus:outline-none focus:border-cosmic-magenta focus:ring-2 focus:ring-cosmic-magenta/40 transition-all font-mono text-base">
-                    <p class="text-xs text-purple-300/70 mt-1.5">Insira os números separados por vírgula ou espaço. Aceita valores positivos, negativos e repetidos.</p>
+                    <p class="text-xs text-purple-300/70 mt-1.5">Aceita números separados por vírgulas ou espaços em branco, contemplando negativos, repetidos e vetor vazio.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Algoritmo -->
                     <div>
-                        <label for="algorithmSelect" class="block text-sm font-semibold text-purple-200 mb-2">Algoritmo de Ordenação:</label>
-                        <select id="algorithmSelect" class="w-full bg-cosmic-bg/80 border border-purple-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cosmic-purple focus:ring-2 focus:ring-cosmic-purple/40 transition-all">
-                            <option value="bubble">Bubble Sort</option>
-                            <option value="selection">Selection Sort</option>
-                            <option value="insertion">Insertion Sort</option>
-                            <option value="quick">Quick Sort</option>
-                            <option value="merge">Merge Sort</option>
+                        <label for="algorithm-select" class="block text-sm font-semibold text-purple-200 mb-2">Algoritmo de Ordenação:</label>
+                        <select id="algorithm-select" class="w-full bg-cosmic-bg/80 border border-purple-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cosmic-purple focus:ring-2 focus:ring-cosmic-purple/40 transition-all">
+                            <option value="bubbleSort">Bubble Sort (Comparações adjacentes e flutuação)</option>
+                            <option value="selectionSort">Selection Sort (Busca do menor elemento a cada passagem)</option>
+                            <option value="insertionSort">Insertion Sort (Inserção ordenada incremental)</option>
+                            <option value="quickSort">Quick Sort (Particionamento eficiente por pivô)</option>
+                            <option value="mergeSort">Merge Sort (Divisão e conquista com intercalação)</option>
                         </select>
                     </div>
 
                     <!-- Sentido -->
                     <div>
-                        <label for="orderSelect" class="block text-sm font-semibold text-purple-200 mb-2">Sentido da Ordenação:</label>
-                        <select id="orderSelect" class="w-full bg-cosmic-bg/80 border border-purple-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cosmic-purple focus:ring-2 focus:ring-cosmic-purple/40 transition-all">
-                            <option value="asc">Crescente (Menor ➔ Maior)</option>
-                            <option value="desc">Decrescente (Maior ➔ Menor)</option>
+                        <label for="order-select" class="block text-sm font-semibold text-purple-200 mb-2">Sentido da Ordenação:</label>
+                        <select id="order-select" class="w-full bg-cosmic-bg/80 border border-purple-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cosmic-purple focus:ring-2 focus:ring-cosmic-purple/40 transition-all">
+                            <option value="asc">Crescente (Menor para o Maior)</option>
+                            <option value="desc">Decrescente (Maior para o Menor)</option>
                         </select>
                     </div>
 
@@ -144,7 +141,7 @@
                             <label for="speedRange" class="block text-sm font-semibold text-purple-200">Velocidade da Animação:</label>
                             <span id="speedValue" class="text-xs font-mono font-bold text-cosmic-magenta">300 ms</span>
                         </div>
-                        <input type="range" id="speedRange" min="50" max="1000" step="50" value="300" oninput="updateSpeedDisplay(this.value)" class="w-full mt-2">
+                        <input type="range" id="speedRange" min="50" max="1000" step="50" value="300" oninput="if(document.getElementById('speedValue')) document.getElementById('speedValue').textContent = this.value + ' ms'" class="w-full mt-2">
                     </div>
                 </div>
 
@@ -153,7 +150,7 @@
                     <button type="submit" id="btnExecute" class="glow-btn flex-1 bg-gradient-to-r from-cosmic-purple to-cosmic-magenta hover:from-purple-600 hover:to-pink-600 text-white font-display font-extrabold text-lg py-3.5 px-6 rounded-xl shadow-[0_10px_25px_rgba(139,92,246,0.5)]">
                         🚀 Executar Ordenação
                     </button>
-                    <button type="button" id="btnPause" onclick="togglePause()" disabled class="glow-btn bg-purple-900/50 text-purple-200 border border-purple-500/30 font-bold py-3.5 px-6 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed">
+                    <button type="button" id="btnPause" disabled class="glow-btn bg-purple-900/50 text-purple-200 border border-purple-500/30 font-bold py-3.5 px-6 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed">
                         ⏸️ Pausar
                     </button>
                 </div>
