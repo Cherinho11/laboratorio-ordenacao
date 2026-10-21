@@ -1,82 +1,93 @@
 /* ============================================================================
-   ESTILOS GLOBAIS E CONFIGURAÇÕES DE TIPOGRAFIA AVANÇADA
+   ESTILOS GLOBAIS - TEMA ROXO NEON COM LUZES E INTERATIVIDADE
    ============================================================================ */
 :root {
-    --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    --bg-main: #f8fafc;
-    --card-bg: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-    --shadow-soft: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
-    --shadow-hover: 0 20px 35px -10px rgba(15, 23, 42, 0.12);
-    --radius-box: 16px;
+    --bg-deep: #080511;
+    --card-surface: #110d24;
+    --accent-purple: #8b5cf6;
+    --accent-magenta: #ec4899;
+    --purple-glow: 0 0 25px rgba(139, 92, 246, 0.7);
+    --magenta-glow: 0 0 25px rgba(236, 72, 153, 0.7);
+    --text-light: #f3e8ff;
+    --text-muted: #a78bfa;
+    --border-glass: rgba(139, 92, 246, 0.2);
+    --radius-main: 16px;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {
-    background-color: var(--bg-main);
+    background-color: var(--bg-deep);
     background-image: 
-        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
-    color: var(--text-main);
+        radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(236, 72, 153, 0.15) 0%, transparent 45%);
+    color: var(--text-light);
     line-height: 1.7;
     padding: 40px 20px;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 /* ============================================================================
-   CABEÇALHO DECORADO DE ALTO PADRÃO (HEADER)
+   CONTAINER PRINCIPAL
    ============================================================================ */
-.site-header {
-    background: var(--primary-gradient);
-    color: #ffffff;
-    padding: 50px 40px;
-    border-radius: var(--radius-box);
-    margin-bottom: 40px;
-    box-shadow: var(--shadow-soft);
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.main-container {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.site-header::after {
+/* ============================================================================
+   CABEÇALHO EM TONS DE ROXO COM BRILHO LATERAL
+   ============================================================================ */
+.site-header {
+    background: linear-gradient(135deg, rgba(17, 13, 36, 0.95) 0%, rgba(30, 20, 60, 0.9) 100%);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    color: var(--text-light);
+    padding: 45px 35px;
+    border-radius: var(--radius-main);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(139, 92, 246, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.site-header::before {
     content: '';
     position: absolute;
     top: 0;
-    right: 0;
-    width: 300px;
+    left: 0;
+    width: 6px;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.15));
-    pointer-events: none;
+    background: var(--accent-purple);
+    box-shadow: var(--purple-glow);
 }
 
 .site-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     font-weight: 800;
-    margin-bottom: 12px;
-    letter-spacing: -0.5px;
-    background: linear-gradient(to right, #ffffff, #93c5fd);
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #ffffff, #d8b4fe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(216, 180, 254, 0.4);
 }
 
 .site-header .subtitle {
-    font-size: 1.15rem;
-    color: #94a3b8;
-    margin-bottom: 25px;
-    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
 }
 
-/* Badges e etiquetas decorativas */
 .badge-container {
     display: flex;
     gap: 12px;
@@ -84,119 +95,109 @@ body {
 }
 
 .badge {
-    background: rgba(255, 255, 255, 0.08);
-    color: #e2e8f0;
-    padding: 8px 16px;
-    border-radius: 30px;
+    background: rgba(139, 92, 246, 0.2);
+    color: #e9d5ff;
+    padding: 6px 14px;
+    border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    transition: all 0.3s ease;
-}
-
-.badge:hover {
-    background: rgba(59, 130, 246, 0.2);
-    border-color: rgba(59, 130, 246, 0.4);
-    transform: translateY(-2px);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
 }
 
 /* ============================================================================
-   CONTAINER ESTRUTURAL E CARTÕES (CARDS) COM PROFUNDIDADE
+   CARTÕES (CARDS) COM ILUMINAÇÃO ROXA AO PASSAR O RATO
    ============================================================================ */
-.main-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
 .card, .card-overview, .card-config, .card-results {
-    background-color: var(--card-bg);
-    border-radius: var(--radius-box);
+    background-color: var(--card-surface);
+    border-radius: var(--radius-main);
     padding: 35px;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid var(--border-color);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-glass);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
 .card:hover {
-    box-shadow: var(--shadow-hover);
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.25);
     transform: translateY(-3px);
 }
 
 h2 {
-    font-size: 1.65rem;
-    color: var(--text-main);
-    margin-bottom: 20px;
+    font-size: 1.6rem;
+    color: var(--text-light);
+    margin-bottom: 18px;
     font-weight: 700;
     display: flex;
     align-items: center;
     gap: 12px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 1px solid var(--border-glass);
     padding-bottom: 12px;
 }
 
 h2::before {
     content: '';
-    display: inline-block;
-    width: 8px;
-    height: 24px;
-    background: var(--accent-gradient);
-    border-radius: 4px;
+    width: 6px;
+    height: 22px;
+    background: var(--accent-purple);
+    border-radius: 3px;
+    box-shadow: var(--purple-glow);
 }
 
 p {
-    margin-bottom: 18px;
+    margin-bottom: 15px;
     color: var(--text-muted);
-    font-size: 1.05rem;
 }
 
 /* ============================================================================
-   BOTÕES DE EXEMPLOS RÁPIDOS (PRESETS) COM DECORAÇÃO MODERNA
+   BOTÕES COM EXPLOSÃO DE LUZ INTENSA AO CLICAR
    ============================================================================ */
 .quick-examples {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
-    margin-top: 18px;
+    margin-top: 15px;
 }
 
 .example-label {
     font-weight: 700;
     display: block;
-    margin-bottom: 10px;
-    color: var(--text-main);
-    font-size: 0.95rem;
-    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--text-light);
+    font-size: 0.9rem;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .preset-btn {
-    background-color: #f1f5f9;
-    border: 1px solid #cbd5e1;
-    color: #334155;
+    background-color: rgba(139, 92, 246, 0.08);
+    border: 1px solid var(--border-glass);
+    color: #e9d5ff;
     padding: 10px 18px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.25s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
 .preset-btn:hover {
-    background: var(--accent-gradient);
+    background-color: var(--accent-purple);
     color: #ffffff;
-    border-color: transparent;
-    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+    border-color: var(--accent-purple);
+    box-shadow: var(--purple-glow);
     transform: translateY(-2px);
 }
 
+/* Clarão de luz intenso ao clicar no botão */
+.preset-btn:active {
+    transform: scale(0.94);
+    box-shadow: 0 0 40px #ffffff, var(--purple-glow);
+}
+
 /* ============================================================================
-   FORMULÁRIO, CAMPOS DE ENTRADA E CONTROLES SLIDER
+   CAMPOS DE ENTRADA COM AURÉOLA DE LUZ ROXA AO FOCO
    ============================================================================ */
 .input-group {
     margin-bottom: 25px;
@@ -204,30 +205,29 @@ p {
 
 .input-group label {
     display: block;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 10px;
-    color: var(--text-main);
-    font-size: 1rem;
+    color: var(--text-light);
 }
 
 .input-group input[type="text"],
 .input-group select {
     width: 100%;
     padding: 16px 20px;
-    border: 2px solid var(--border-color);
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--border-glass);
     border-radius: 12px;
     font-size: 1.05rem;
+    color: var(--text-light);
     outline: none;
     transition: all 0.3s ease;
-    background-color: #f8fafc;
-    color: var(--text-main);
 }
 
 .input-group input[type="text"]:focus,
 .input-group select:focus {
-    border-color: #3b82f6;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.15);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 30px var(--purple-glow);
+    background-color: rgba(0, 0, 0, 0.55);
 }
 
 .helper-text {
@@ -237,28 +237,9 @@ p {
     display: block;
 }
 
-/* Slider de Velocidade Decorado */
-input[type="range"] {
-    width: 100%;
-    accent-color: #3b82f6;
-    height: 8px;
-    background: #e2e8f0;
-    border-radius: 4px;
-    outline: none;
-    margin: 10px 0;
-}
-
-.speed-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 600;
-}
-
-/* Botão principal de ação (Executar Ordenação) */
+/* Botão principal de ação (Executar Ordenação) com luz roxa/magenta */
 .btn-submit {
-    background: var(--success-gradient);
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
     color: white;
     border: none;
     padding: 16px 32px;
@@ -266,120 +247,45 @@ input[type="range"] {
     font-size: 1.15rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
     width: 100%;
-    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 25px rgba(139, 92, 246, 0.6);
 }
 
 .btn-submit:hover {
-    box-shadow: 0 12px 25px rgba(16, 185, 129, 0.45);
-    transform: translateY(-2px);
-    filter: brightness(1.05);
+    filter: brightness(1.2);
+    box-shadow: 0 8px 35px var(--magenta-glow);
+    transform: translateY(-3px);
 }
 
 .btn-submit:active {
-    transform: translateY(0);
+    transform: scale(0.97) translateY(0);
+    box-shadow: 0 0 45px #ffffff, 0 0 60px var(--accent-magenta);
 }
 
 /* ============================================================================
-   CONTAINER DE VISUALIZAÇÃO GRÁFICA DINÂMICA (BLOCOS EM MOVIMENTO)
+   MENSAGENS DE ERRO E RESULTADOS ILUMINADOS
    ============================================================================ */
-.visualizacao-box {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 12px;
-    height: 220px;
-    background: #0f172a;
-    border-radius: 14px;
-    padding: 25px;
-    margin-top: 20px;
-    box-shadow: inset 0 4px 12px rgba(0,0,0,0.3);
-    border: 1px solid #334155;
-    overflow-x: auto;
-}
-
-.barra-animada {
-    background: linear-gradient(to top, #3b82f6, #60a5fa);
-    color: white;
-    font-weight: 700;
-    width: 45px;
-    min-width: 45px;
-    border-radius: 8px 8px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: height 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    font-size: 1.1rem;
-}
-
-/* Estados especiais da animação visual */
-.destaque-comparacao {
-    background: linear-gradient(to top, #f59e0b, #fbbf24) !important;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
-}
-
-.destaque-troca {
-    background: linear-gradient(to top, #ef4444, #f87171) !important;
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
-}
-
-/* ============================================================================
-   PAINEL DE ESTATÍSTICAS E RESULTADOS DECORADOS
-   ============================================================================ */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.stat-card {
-    background: #f8fafc;
-    border: 1px solid var(--border-color);
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-}
-
-.stat-card h4 {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
-}
-
-.stat-card span {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #3b82f6;
-}
-
 .error-container {
-    background-color: #fef2f2;
-    color: #991b1b;
+    background-color: rgba(239, 68, 68, 0.12);
+    color: #fca5a5;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 25px;
-    border-left: 6px solid #dc2626;
-    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
+    border-left: 6px solid #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
     display: none;
     font-weight: 600;
 }
 
 .results-container {
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-    border: 1px solid #bbf7d0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(236, 72, 153, 0.15) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.4);
     padding: 30px;
-    border-radius: var(--radius-box);
-    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.12);
+    border-radius: var(--radius-main);
     display: none;
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.2), var(--purple-glow);
 }
 
 .result-row {
@@ -388,11 +294,12 @@ input[type="range"] {
 }
 
 .result-row strong {
-    color: #065f46;
+    color: #f472b6;
+    text-shadow: 0 0 12px rgba(244, 114, 182, 0.6);
 }
 
 /* ============================================================================
-   RESPONSIVIDADE ADAPTATIVA PARA COMPUTADORES E DISPOSITIVOS MÓVEis
+   RESPONSIVIDADE
    ============================================================================ */
 @media (min-width: 768px) {
     .form-grid {
@@ -403,6 +310,5 @@ input[type="range"] {
     
     .btn-submit {
         width: auto;
-        min-width: 250px;
     }
 }
