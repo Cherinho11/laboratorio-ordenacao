@@ -1,23 +1,289 @@
-// Funções Auxiliares do Painel
-function loadPreset(values) {
-    document.getElementById('numbersInput').value = values;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratório Interativo de Algoritmos de Ordenação</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: {
+                            bg: '#090314',
+                            surface: '#130a2a',
+                            card: 'rgba(23, 14, 51, 0.75)',
+                            purple: '#8b5cf6',
+                            magenta: '#ec4899',
+                            glow: '#a855f7',
+                            cyan: '#06b6d4',
+                            yellow: '#facc15'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Folha de Estilos Externa -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans antialiased min-h-screen pb-16 bg-cosmic-bg text-white">
 
-function generateRandomArray() {
-    const randomNums = Array.from({ length: 12 }, () => Math.floor(Math.random() * 90) - 20);
-    document.getElementById('numbersInput').value = randomNums.join(', ');
-}
+    <!-- Container Centralizador -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
 
-function updateSpeedDisplay(value) {
-    document.getElementById('speedValue').innerText = `${value} ms`;
-}
+        <!-- CABEÇALHO IMPONENTE -->
+        <header class="glass-card rounded-2xl p-6 md:p-10 relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-72 h-72 bg-cosmic-magenta/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-cosmic-purple/20 rounded-full blur-3xl pointer-events-none"></div>
 
-function handleStartSort(event) {
-    event.preventDefault();
-    // Lógica de start da ordenação a ser implementada
-    console.log("Iniciando execução...");
-}
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-glow mb-2">
+                        Laboratório Interativo de Algoritmos de Ordenação
+                    </h1>
+                    <p class="text-cosmic-purple/80 text-base sm:text-lg font-medium">
+                        Curso Técnico em Informática — Estrutura de Dados
+                    </p>
+                </div>
 
-function togglePause() {
-    console.log("Pausar/Continuar animação");
-}
+                <!-- Badges Futuristas -->
+                <div class="flex flex-wrap gap-2.5 sm:gap-3">
+                    <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-cosmic-purple/20 text-purple-200 border border-cosmic-purple/40 shadow-[0_0_12px_rgba(139,92,246,0.25)]">
+                        Versão 1.0
+                    </span>
+                    <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-cosmic-magenta/20 text-pink-200 border border-cosmic-magenta/40 shadow-[0_0_12px_rgba(236,72,153,0.25)]">
+                        JavaScript Puro
+                    </span>
+                    <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-cosmic-cyan/20 text-cyan-200 border border-cosmic-cyan/40 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
+                        GitHub Pages Ready
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAINEL DE CONTROLE E CONFIGURAÇÃO -->
+        <section class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+            <div class="border-b border-purple-500/20 pb-4">
+                <h2 class="text-xl sm:text-2xl font-display font-bold text-white flex items-center gap-3">
+                    <span class="w-2.5 h-6 bg-gradient-to-b from-cosmic-purple to-cosmic-magenta rounded-full shadow-[0_0_10px_#ec4899]"></span>
+                    Painel de Configuração e Entrada
+                </h2>
+            </div>
+
+            <!-- Exemplos Rápidos -->
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-purple-300 mb-3">Exemplos Rápidos de Entrada:</label>
+                <div class="flex flex-wrap gap-2.5">
+                    <button type="button" onclick="loadPreset('8, 3, 10, -2, 3, 1')" class="glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                        Padrão (8, 3, 10, -2, 3, 1)
+                    </button>
+                    <button type="button" onclick="loadPreset('15, 4, 23, 8, 42, 16, 4')" class="glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                        Sequência Média
+                    </button>
+                    <button type="button" onclick="loadPreset('5, 2, 8, 1, 9, 3')" class="glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                        Valores Mistos
+                    </button>
+                    <button type="button" onclick="loadPreset('-5, 12, -8, 0, 7, -3')" class="glow-btn bg-purple-900/40 hover:bg-cosmic-purple text-purple-100 hover:text-white border border-purple-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                        Com Negativos
+                    </button>
+                    <button type="button" onclick="generateRandomArray()" class="glow-btn bg-pink-900/40 hover:bg-cosmic-magenta text-pink-100 hover:text-white border border-pink-500/30 px-4 py-2 rounded-xl text-sm font-semibold">
+                        🎲 Aleatório (12 itens)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <form id="sortForm" onsubmit="handleStartSort(event)" class="space-y-6">
+                <!-- Input de Números -->
+                <div>
+                    <label for="numbersInput" class="block text-sm font-semibold text-purple-200 mb-2">Sequência Numérica (Dados Brutos):</label>
+                    <input type="text" id="numbersInput" placeholder="Ex: 8, 3, 10, -2, 3, 1" value="8, 3, 10, -2, 3, 1" autocomplete="off"
+                           class="w-full bg-cosmic-bg/80 border border-purple-500/30 rounded-xl px-4 py-3 text-white placeholder-purple-400/50 focus:outline-none focus:border-cosmic-magenta focus:ring-2 focus:ring-cosmic-magenta/40 transition-all font-mono text-base">
+                    <p class="text-xs text-purple-300/70 mt-1.5">Insira os números separados por vírgula ou espaço. Aceita valores positivos, negativos e repetidos.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Algoritmo -->
+                    <div>
+                        <label for="algorithmSelect" class="block text-sm font-semibold text-purple-200 mb-2">Algoritmo de Ordenação:</label>
+                        <select id="algorithmSelect" class="w-full bg-cosmic-bg/80 border border-purple-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cosmic-purple focus:ring-2 focus:ring-cosmic-purple/40 transition-all">
+                            <option value="bubble">Bubble Sort</option>
+                            <option value="selection">Selection Sort</option>
+                            <option value="insertion">Insertion Sort</option>
+                            <option value="quick">Quick Sort</option>
+                            <option value="merge">Merge Sort</option>
+                        </select>
+                    </div>
+
+                    <!-- Sentido -->
+                    <div>
+                        <label for="orderSelect" class="block text-sm font-semibold text-purple-200 mb-2">Sentido da Ordenação:</label>
+                        <select id="orderSelect" class="w-full bg-cosmic-bg/80 border border-purple-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cosmic-purple focus:ring-2 focus:ring-cosmic-purple/40 transition-all">
+                            <option value="asc">Crescente (Menor ➔ Maior)</option>
+                            <option value="desc">Decrescente (Maior ➔ Menor)</option>
+                        </select>
+                    </div>
+
+                    <!-- Controle de Velocidade -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label for="speedRange" class="block text-sm font-semibold text-purple-200">Velocidade da Animação:</label>
+                            <span id="speedValue" class="text-xs font-mono font-bold text-cosmic-magenta">300 ms</span>
+                        </div>
+                        <input type="range" id="speedRange" min="50" max="1000" step="50" value="300" oninput="updateSpeedDisplay(this.value)" class="w-full mt-2">
+                    </div>
+                </div>
+
+                <!-- Botão de Ação -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <button type="submit" id="btnExecute" class="glow-btn flex-1 bg-gradient-to-r from-cosmic-purple to-cosmic-magenta hover:from-purple-600 hover:to-pink-600 text-white font-display font-extrabold text-lg py-3.5 px-6 rounded-xl shadow-[0_10px_25px_rgba(139,92,246,0.5)]">
+                        🚀 Executar Ordenação
+                    </button>
+                    <button type="button" id="btnPause" onclick="togglePause()" disabled class="glow-btn bg-purple-900/50 text-purple-200 border border-purple-500/30 font-bold py-3.5 px-6 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed">
+                        ⏸️ Pausar
+                    </button>
+                </div>
+            </form>
+
+            <!-- Alertas de Erro -->
+            <div id="errorBox" class="hidden bg-red-950/60 border border-red-500/50 text-red-200 p-4 rounded-xl text-sm font-medium flex items-center gap-3">
+                <span class="text-xl">⚠️</span>
+                <span id="errorMessage"></span>
+            </div>
+        </section>
+
+        <!-- ÁREA DE VISUALIZAÇÃO GRÁFICA EM TEMPO REAL -->
+        <section class="glass-card rounded-2xl p-6 sm:p-8 space-y-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-purple-500/20 pb-4">
+                <h2 class="text-xl sm:text-2xl font-display font-bold text-white flex items-center gap-3">
+                    <span class="w-2.5 h-6 bg-gradient-to-b from-cosmic-cyan to-cosmic-purple rounded-full shadow-[0_0_10px_#06b6d4]"></span>
+                    Visualização Gráfica em Tempo Real
+                </h2>
+
+                <!-- Legenda de Cores -->
+                <div class="flex flex-wrap items-center gap-4 text-xs font-semibold">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-cosmic-purple"></span>
+                        <span class="text-purple-200">Padrão</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-cosmic-yellow"></span>
+                        <span class="text-yellow-200">Comparando</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-cosmic-magenta"></span>
+                        <span class="text-pink-200">Troca / Swap</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                        <span class="text-emerald-200">Ordenado</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canvas de Barras -->
+            <div class="w-full bg-cosmic-bg/90 rounded-xl p-4 md:p-6 border border-purple-500/20 min-h-[280px] flex items-end justify-center gap-2 sm:gap-3 overflow-x-auto relative" id="visualizerContainer">
+                <p id="emptyVisualizerText" class="text-purple-300/50 text-sm font-medium absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    Aguardando execução para renderizar o gráfico...
+                </p>
+            </div>
+        </section>
+
+        <!-- PAINEL DE ESTATÍSTICAS E RESULTADOS -->
+        <section class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <!-- Comparações -->
+            <div class="glass-card rounded-2xl p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-purple-300">Total de Comparações</p>
+                <p id="statComparisons" class="text-4xl font-display font-black text-glow">0</p>
+            </div>
+
+            <!-- Trocas -->
+            <div class="glass-card rounded-2xl p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-purple-300">Total de Trocas (Swaps)</p>
+                <p id="statSwaps" class="text-4xl font-display font-black text-glow">0</p>
+            </div>
+
+            <!-- Tempo Decorrido -->
+            <div class="glass-card rounded-2xl p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-purple-300">Tempo Decorrido</p>
+                <p id="statTime" class="text-4xl font-display font-black text-glow">0 ms</p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE GUIA TÉCNICO DOS ALGORITMOS -->
+        <section class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+            <div class="border-b border-purple-500/20 pb-4">
+                <h2 class="text-xl sm:text-2xl font-display font-bold text-white flex items-center gap-3">
+                    <span class="w-2.5 h-6 bg-gradient-to-b from-cosmic-magenta to-cosmic-purple rounded-full shadow-[0_0_10px_#ec4899]"></span>
+                    Guia Técnico dos Algoritmos
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Bubble Sort -->
+                <div class="bg-cosmic-bg/60 border border-purple-500/20 rounded-xl p-5 space-y-2 hover:border-purple-500/50 transition-all">
+                    <h3 class="font-display font-bold text-lg text-cosmic-purple">Bubble Sort</h3>
+                    <p class="text-xs text-purple-200/80 leading-relaxed">
+                        Percorre o vetor iterativamente comparando pares de elementos adjacentes. Se estiverem fora de ordem, realiza a troca imediata. Maior elemento "flutua" para o fim a cada passagem.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-semibold bg-purple-950 text-purple-300 px-2 py-1 rounded">Complexidade: O(n²)</span>
+                </div>
+
+                <!-- Selection Sort -->
+                <div class="bg-cosmic-bg/60 border border-purple-500/20 rounded-xl p-5 space-y-2 hover:border-purple-500/50 transition-all">
+                    <h3 class="font-display font-bold text-lg text-cosmic-purple">Selection Sort</h3>
+                    <p class="text-xs text-purple-200/80 leading-relaxed">
+                        Busca ativamente o menor (ou maior) elemento de toda a sublista não ordenada e troca-o diretamente com a primeira posição não ordenada.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-semibold bg-purple-950 text-purple-300 px-2 py-1 rounded">Complexidade: O(n²)</span>
+                </div>
+
+                <!-- Insertion Sort -->
+                <div class="bg-cosmic-bg/60 border border-purple-500/20 rounded-xl p-5 space-y-2 hover:border-purple-500/50 transition-all">
+                    <h3 class="font-display font-bold text-lg text-cosmic-purple">Insertion Sort</h3>
+                    <p class="text-xs text-purple-200/80 leading-relaxed">
+                        Constrói a lista final ordenada um item por vez, deslocando os elementos maiores para abrir espaço e inserir o item atual na sua posição correta.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-semibold bg-purple-950 text-purple-300 px-2 py-1 rounded">Complexidade: O(n²)</span>
+                </div>
+
+                <!-- Quick Sort -->
+                <div class="bg-cosmic-bg/60 border border-purple-500/20 rounded-xl p-5 space-y-2 hover:border-purple-500/50 transition-all">
+                    <h3 class="font-display font-bold text-lg text-cosmic-magenta">Quick Sort</h3>
+                    <p class="text-xs text-pink-200/80 leading-relaxed">
+                        Algoritmo de divisão e conquista. Seleciona um pivô, particiona os dados em menores e maiores que o pivô, e ordena recursivamente cada partição.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-semibold bg-pink-950 text-pink-300 px-2 py-1 rounded">Complexidade Médio: O(n log n)</span>
+                </div>
+
+                <!-- Merge Sort -->
+                <div class="bg-cosmic-bg/60 border border-purple-500/20 rounded-xl p-5 space-y-2 hover:border-purple-500/50 transition-all md:col-span-2 lg:col-span-2">
+                    <h3 class="font-display font-bold text-lg text-cosmic-cyan">Merge Sort</h3>
+                    <p class="text-xs text-cyan-200/80 leading-relaxed">
+                        Divide o vetor continuamente ao meio até ter sublistas de um único elemento. Em seguida, intercala (combina) essas sublistas de maneira ordenada até reconstituir o vetor completo.
+                    </p>
+                    <span class="inline-block text-[10px] font-mono font-semibold bg-cyan-950 text-cyan-300 px-2 py-1 rounded">Complexidade: O(n log n)</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script Principal -->
+    <script src="script.js"></script>
+</body>
+</html>
