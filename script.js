@@ -1,43 +1,21 @@
-// Aguarda o HTML carregar completamente antes de executar o script
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Laboratório Cósmico carregado com sucesso!");
-});
+/* Estilos Customizados para o Laboratório Cósmico de Algoritmos */
 
-// Funções Auxiliares do Painel
-function loadPreset(values) {
-    const inputField = document.getElementById('numbersInput');
-    if (inputField) {
-        inputField.value = values;
-        console.log("Preset carregado:", values);
-    } else {
-        console.error("Elemento 'numbersInput' não encontrado!");
-    }
+.glass-card {
+    background: rgba(23, 14, 51, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-function generateRandomArray() {
-    const randomNums = Array.from({ length: 12 }, () => Math.floor(Math.random() * 90) - 20);
-    const inputField = document.getElementById('numbersInput');
-    if (inputField) {
-        inputField.value = randomNums.join(', ');
-        console.log("Array aleatório gerado:", inputField.value);
-    } else {
-        console.error("Elemento 'numbersInput' não encontrado!");
-    }
+.text-glow {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
 }
 
-function updateSpeedDisplay(value) {
-    const speedDisplay = document.getElementById('speedValue');
-    if (speedDisplay) {
-        speedDisplay.innerText = `${value} ms`;
-    }
+.glow-btn {
+    transition: all 0.3s ease;
 }
 
-function handleStartSort(event) {
-    event.preventDefault();
-    console.log("Iniciando execução...");
-    // Aqui entrará a lógica de ordenação no futuro
-}
-
-function togglePause() {
-    console.log("Pausar/Continuar animação");
+.glow-btn:hover {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
 }
