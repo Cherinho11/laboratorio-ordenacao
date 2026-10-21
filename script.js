@@ -1,21 +1,23 @@
-/* Estilos Customizados para o Laboratório Cósmico de Algoritmos */
-
-.glass-card {
-    background: rgba(23, 14, 51, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+// Funções Auxiliares do Painel
+function loadPreset(values) {
+    document.getElementById('numbersInput').value = values;
 }
 
-.text-glow {
-    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+function generateRandomArray() {
+    const randomNums = Array.from({ length: 12 }, () => Math.floor(Math.random() * 90) - 20);
+    document.getElementById('numbersInput').value = randomNums.join(', ');
 }
 
-.glow-btn {
-    transition: all 0.3s ease;
+function updateSpeedDisplay(value) {
+    document.getElementById('speedValue').innerText = `${value} ms`;
 }
 
-.glow-btn:hover {
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+function handleStartSort(event) {
+    event.preventDefault();
+    // Lógica de start da ordenação a ser implementada
+    console.log("Iniciando execução...");
+}
+
+function togglePause() {
+    console.log("Pausar/Continuar animação");
 }
