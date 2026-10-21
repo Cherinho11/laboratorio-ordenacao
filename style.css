@@ -1,1 +1,408 @@
+/* ============================================================================
+   ESTILOS GLOBAIS E CONFIGURAÇÕES DE TIPOGRAFIA AVANÇADA
+   ============================================================================ */
+:root {
+    --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --shadow-soft: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+    --shadow-hover: 0 20px 35px -10px rgba(15, 23, 42, 0.12);
+    --radius-box: 16px;
+}
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+    color: var(--text-main);
+    line-height: 1.7;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+/* ============================================================================
+   CABEÇALHO DECORADO DE ALTO PADRÃO (HEADER)
+   ============================================================================ */
+.site-header {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    padding: 50px 40px;
+    border-radius: var(--radius-box);
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.15));
+    pointer-events: none;
+}
+
+.site-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, #ffffff, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.site-header .subtitle {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+/* Badges e etiquetas decorativas */
+.badge-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ============================================================================
+   CONTAINER ESTRUTURAL E CARTÕES (CARDS) COM PROFUNDIDADE
+   ============================================================================ */
+.main-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card, .card-overview, .card-config, .card-results {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-box);
+    padding: 35px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-3px);
+}
+
+h2 {
+    font-size: 1.65rem;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+h2::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 24px;
+    background: var(--accent-gradient);
+    border-radius: 4px;
+}
+
+p {
+    margin-bottom: 18px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* ============================================================================
+   BOTÕES DE EXEMPLOS RÁPIDOS (PRESETS) COM DECORAÇÃO MODERNA
+   ============================================================================ */
+.quick-examples {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.example-label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.preset-btn {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.preset-btn:hover {
+    background: var(--accent-gradient);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ============================================================================
+   FORMULÁRIO, CAMPOS DE ENTRADA E CONTROLES SLIDER
+   ============================================================================ */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.input-group input[type="text"],
+.input-group select {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1.05rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+    color: var(--text-main);
+}
+
+.input-group input[type="text"]:focus,
+.input-group select:focus {
+    border-color: #3b82f6;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.15);
+}
+
+.helper-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    display: block;
+}
+
+/* Slider de Velocidade Decorado */
+input[type="range"] {
+    width: 100%;
+    accent-color: #3b82f6;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    outline: none;
+    margin: 10px 0;
+}
+
+.speed-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Botão principal de ação (Executar Ordenação) */
+.btn-submit {
+    background: var(--success-gradient);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    width: 100%;
+    letter-spacing: 0.5px;
+}
+
+.btn-submit:hover {
+    box-shadow: 0 12px 25px rgba(16, 185, 129, 0.45);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* ============================================================================
+   CONTAINER DE VISUALIZAÇÃO GRÁFICA DINÂMICA (BLOCOS EM MOVIMENTO)
+   ============================================================================ */
+.visualizacao-box {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 12px;
+    height: 220px;
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: inset 0 4px 12px rgba(0,0,0,0.3);
+    border: 1px solid #334155;
+    overflow-x: auto;
+}
+
+.barra-animada {
+    background: linear-gradient(to top, #3b82f6, #60a5fa);
+    color: white;
+    font-weight: 700;
+    width: 45px;
+    min-width: 45px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: height 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-size: 1.1rem;
+}
+
+/* Estados especiais da animação visual */
+.destaque-comparacao {
+    background: linear-gradient(to top, #f59e0b, #fbbf24) !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+}
+
+.destaque-troca {
+    background: linear-gradient(to top, #ef4444, #f87171) !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+}
+
+/* ============================================================================
+   PAINEL DE ESTATÍSTICAS E RESULTADOS DECORADOS
+   ============================================================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.stat-card h4 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.stat-card span {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #3b82f6;
+}
+
+.error-container {
+    background-color: #fef2f2;
+    color: #991b1b;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border-left: 6px solid #dc2626;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
+    display: none;
+    font-weight: 600;
+}
+
+.results-container {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1px solid #bbf7d0;
+    padding: 30px;
+    border-radius: var(--radius-box);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.12);
+    display: none;
+}
+
+.result-row {
+    margin-bottom: 15px;
+    font-size: 1.15rem;
+}
+
+.result-row strong {
+    color: #065f46;
+}
+
+/* ============================================================================
+   RESPONSIVIDADE ADAPTATIVA PARA COMPUTADORES E DISPOSITIVOS MÓVEis
+   ============================================================================ */
+@media (min-width: 768px) {
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+    
+    .btn-submit {
+        width: auto;
+        min-width: 250px;
+    }
+}
